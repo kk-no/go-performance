@@ -2,7 +2,6 @@ package io
 
 import (
 	"bytes"
-	"io"
 	"net/http/httptest"
 	"os"
 	"testing"
@@ -11,12 +10,11 @@ import (
 var image []byte
 
 func init() {
-	body, err := os.Open("../assets/image.jpg")
+	body, err := os.ReadFile("../assets/image.jpg")
 	if err != nil {
 		panic(err)
 	}
-	image, _ = io.ReadAll(body)
-	body.Close()
+	image = body
 }
 
 func BenchmarkIOReadAll(b *testing.B) {

@@ -11,8 +11,8 @@ var image []byte
 
 func init() {
 	body, _ := os.Open("../assets/image.jpg")
+	defer body.Close()
 	image, _ = ioutil.ReadAll(body)
-	body.Close()
 	fmt.Println(len(image))
 }
 

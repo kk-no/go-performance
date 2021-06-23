@@ -13,8 +13,8 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+	defer body.Close()
 	image, _ = io.ReadAll(body)
-	body.Close()
 }
 
 func BenchmarkBasicAppend(b *testing.B) {
